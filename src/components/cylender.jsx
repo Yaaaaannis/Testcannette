@@ -209,7 +209,16 @@ const Cylinder = () => {
         duration: 1,
         ease: "power2.inOut"
       }, "<")
-
+      .to('.bg-phase1', {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.inOut"
+      })
+      .to('.bg-phase2', {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.inOut"
+      }, "<")
       // Transition Phase 1 -> Phase 2
       .fromTo('.text-phase1',
         { opacity: 1, x: 20 },
@@ -231,7 +240,8 @@ const Cylinder = () => {
         },
         "<+=0.2" // Légèrement décalé après la disparition du texte 1
       )
-
+     
+   
       // Phase 2: Basculement
       .to(cylinder.rotation, {
         x: Math.PI * 0.5,
@@ -266,7 +276,16 @@ const Cylinder = () => {
         },
         "<+=0.2"
       )
-
+      .to('.bg-phase2', {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.inOut"
+      })
+      .to('.bg-phase3', {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.inOut"
+      }, "<")
       // Phase 3: Roulement
       .to(cylinder.rotation, {
         y: Math.PI * -4,
@@ -274,7 +293,7 @@ const Cylinder = () => {
         ease: "none"
       })
       .to(cylinder.position, {
-        x: 25,
+        x: 55,
         duration: 3,
         ease: "none"
       }, "<")
@@ -385,19 +404,56 @@ const Cylinder = () => {
 
   return (
     <>
-      <div ref={containerRef} style={{ 
-          position: 'fixed',
+      {/* Backgrounds */}
+      <div className="background-container" style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100vh',
+        zIndex: 0,
+      }}>
+        <div className="bg bg-phase1" style={{
+          position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
-          height: '100vh',
-          zIndex: 0,
+          height: '100%',
           backgroundImage: 'url(./espace.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: '#000000', // Fallback color
-     
+          opacity: 1,
+        }} />
+        <div className="bg bg-phase2" style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: 'url(./ciel.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0,
+        }} />
+        <div className="bg bg-phase3" style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: 'url(./blue.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0,
+        }} />
+      </div>
+      <div ref={containerRef} style={{ 
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100vh',
+        zIndex: 1,
       }}>
       </div>
       {/* Textes animés */}
@@ -416,7 +472,7 @@ const Cylinder = () => {
           Phase 2: Le cylindre roule
         </h2>
         <h2 className="text-phase3" style={{ opacity: 0 }}>
-          Phase 3: Le cylindre roule
+          Phase 3: Le cylindre tourne encore plus
         </h2>
       </div>
       <div style={{ height: '300vh' }}></div>

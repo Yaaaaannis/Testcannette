@@ -14,3 +14,12 @@
   position: absolute;
   pointer-events: none;
 } 
+
+.bg {
+  transition: opacity 1s ease-in-out;
+  will-change: opacity;
+}
+
+.background-container {
+  background: black; /* Fallback */
+}
