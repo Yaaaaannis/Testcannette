@@ -178,7 +178,7 @@ const Cylinder = () => {
           start: 'top top',
           end: `+=${window.innerHeight * 3}`,
           scrub: true,
-          markers: true,
+          
         }
     });
   
