@@ -1,0 +1,16 @@
+.text-container h2 {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+}
+
+.text-phase1, .text-phase2, .text-phase3 {
+  opacity: 0;
+  transform: translateX(-20px);
+  visibility: hidden;
+  position: absolute;
+  pointer-events: none;
+} 
